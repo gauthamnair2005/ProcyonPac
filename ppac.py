@@ -39,15 +39,15 @@ class ProcyonPac:
         all_packages = {}
         for repo_name, repo_info in self.repos.items():
             json_url = repo_info["json_url"]
-            print(f"Loading packages.json from {repo_name}")
+            print(f"Loading repository... [{repo_name}]")
             try:
                 response = requests.get(json_url)
                 if response.status_code == 200:
                     repo_packages = response.json()
-                    print(f"Successfully loaded packages.json from {repo_name}")
+                    print(f" ↳Successfully loaded repository [{repo_name}]")
                     all_packages.update(repo_packages)
                 else:
-                    print(f"Failed to load packages.json from {repo_name}. Status: {response.status_code}")
+                    print(f" ↳Failed to load repository [{repo_name}]\n  ↳Status: {response.status_code}")
             except Exception as e:
                 print(f"Error loading packages.json from {json_url}: {e}")
         return all_packages
